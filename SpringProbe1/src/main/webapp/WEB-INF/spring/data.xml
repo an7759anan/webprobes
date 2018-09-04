@@ -55,6 +55,12 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
 				<prop key="hibernate.connection.charSet">UTF-8</prop>
+				<prop key="hibernate.connection.driver_class">${jdbc.driverClassName}</prop>
+ 				<prop key="hibernate.connection.username">${jdbc.username}</prop>
+ 				<prop key="hibernate.connection.password">${jdbc.password}</prop>
+ 				<prop key="hibernate.connection.url">${jdbc.databaseurl}</prop>
+        		<prop key="connection_pool_size">1</prop>
+        		<prop key="hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
