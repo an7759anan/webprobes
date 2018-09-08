@@ -18,13 +18,20 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	</http>
 
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER" />
-				<user name="user1" password="1111" authorities="ROLE_USER" />
-				<user name="user2" password="2222" disabled="true" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
+	  	<authentication-provider>
+	  		<password-encoder ref="encoder" />
+			<jdbc-user-service data-source-ref="dataSource"
+		  		users-by-username-query=
+		    		"select username,password, enabled from &quot;laUsers&quot; where username=?"
+		  		authorities-by-username-query=
+		    		"select username, role from &quot;laUserRoles&quot; where username =?  " />
+	  	</authentication-provider>
 	</authentication-manager>
+
+  <beans:bean id="encoder" 
+	class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	<beans:constructor-arg name="strength" value="11" />
+  </beans:bean>
+
 
 </beans:beans>
