@@ -17,15 +17,13 @@
 
 	<!-- Менеджер транзакций -->
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
 
 	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		p:basename="classpath:messages"
+		p:defaultEncoding="UTF-8" />
 
 	<!-- Настройки бина dataSource будем хранить в отдельном файле -->
 	<bean id="propertyConfigurer"
@@ -42,14 +40,10 @@
 
 	<!-- Настройки фабрики сессий Хибернейта -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation">
-			<value>classpath:hibernate.cfg.xml</value>
-		</property>
-		<property name="configurationClass">
-			<value>org.hibernate.cfg.AnnotationConfiguration</value>
-		</property>
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:configLocation="classpath:hibernate.cfg.xml"
+		p:configurationClass="org.hibernate.cfg.AnnotationConfiguration" >
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.show_sql">true</prop>

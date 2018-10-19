@@ -16,8 +16,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.spri
 	<!-- Root Context: определяет ресурсы, доступные всему приложению, всем сервлетам -->
 	
 	<!-- Включаем опцию использования конфигурационных аннотаций (@Annotation-based configuration)-->
-	<context:annotation-config />
-
+	<!-- context:annotation-config / -->
+<!-- Вроде как верхний не нужен, так как есть ниже... Но как тогла контроллер попадает в контейнер? -->
 	<!-- Определяем папки, в которых будем автоматически искать бины-компоненты (@Component, @Service)  -->
 	<context:component-scan base-package="com.myfamily.myapp.dao" />
 	<context:component-scan base-package="com.myfamily.myapp.service" />
