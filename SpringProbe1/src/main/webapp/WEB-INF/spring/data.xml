@@ -13,12 +13,17 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- tx:annotation-driven transaction-manager="transactionManager" /-->
+	<tx:annotation-driven transaction-manager="txManager" />
 
 	<!-- Менеджер транзакций -->
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
-		p:sessionFactory-ref="sessionFactory" />
+	<!-- bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" /-->
+
+	<bean id="txManager"
+      	class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+      	p:sessionFactory-ref="sessionFactory" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
@@ -40,10 +45,10 @@
 
 	<!-- Настройки фабрики сессий Хибернейта -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
 		p:dataSource-ref="dataSource"
-		p:configLocation="classpath:hibernate.cfg.xml"
-		p:configurationClass="org.hibernate.cfg.AnnotationConfiguration" >
+		p:configLocation="classpath:hibernate.cfg.xml">
+		<!-- p:configurationClass="org.hibernate.cfg.AnnotationConfiguration" -->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.show_sql">true</prop>

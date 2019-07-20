@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-import com.myfamily.myapp.domain.Contact;
 import com.myfamily.myapp.domain.User;
 
 @Repository
@@ -30,7 +29,7 @@ public class AdminServiceDAOImpl implements AdminServiceDAO {
 	@Override
 	public void removeUser(String username) {
 		User user = (User) sessionFactory.getCurrentSession().load(
-				Contact.class, username);
+				User.class, username);
 		if (null != user) {
 			sessionFactory.getCurrentSession().delete(user);	
 		}

@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import com.myfamily.myapp.domain.User;
 //import com.myfamily.myapp.domain.UserRole;
 import com.myfamily.myapp.service.AdminService;
 
-@Controller
+@RestController
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -47,7 +49,7 @@ public class AdminController {
 		return "redirect:/admin/users";
 	}
 
-	@RequestMapping("/delete/{username}")
+	@RequestMapping("/admin/users/delete/{username}")
 	public String deleteContact(@PathVariable("username") String username) {
 
 		adminService.removeUser(username);
